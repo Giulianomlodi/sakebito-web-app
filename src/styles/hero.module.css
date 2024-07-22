@@ -1,0 +1,71 @@
+.verdino {
+  color: #427930;
+  font-weight: 900;
+}
+
+@media (min-width: 320px) {
+  .heroContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    padding-inline: 70px;
+    gap: 0;
+  }
+  .textArea {
+    display: inline;
+    text-align: left;
+    color: #000;
+    font-size: 40px;
+    font-weight: 800;
+    max-width: 600px;
+    padding-block-start: 90px;
+    margin-block-start: 50px;
+    margin-block-end: -50px;
+    text-transform: uppercase;
+    line-height: 1.2em;
+  }
+  .modelArea {
+    display: inline;
+    width: 80%;
+    height: 40%;
+    padding-top: 3em;
+  }
+}
+
+@media (min-width: 520px) {
+  .heroContainer {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    padding-inline-start: 170px;
+    gap: 0;
+  }
+  .textArea {
+    display: inline;
+    text-align: left;
+    color: #2e343d;
+    font-size: 65px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding-block-start: 0px;
+    padding-inline-start: 20px;
+    margin-block-end: -40px;
+  }
+  .modelArea {
+    display: inline;
+    width: 100%;
+    height: 81%;
+    padding-top: 3em;
+  }
+}
