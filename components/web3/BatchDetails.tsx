@@ -3,7 +3,6 @@ import { useReadContract, useWatchContractEvent } from 'wagmi';
 import { formatEther } from 'viem';
 import { abi } from '../../contract-abi';
 
-// Define the type for batch details
 interface BatchDetails {
     name: string;
     cost: string;
@@ -12,7 +11,6 @@ interface BatchDetails {
     minted: bigint;
 }
 
-// Define the props type
 interface BatchDetailsProps {
     contractAddress: `0x${string}`;
 }
@@ -52,13 +50,15 @@ const BatchDetails: React.FC<BatchDetailsProps> = ({ contractAddress }) => {
         return <div>Loading batch details...</div>;
     }
 
+    const remainingMints = batchDetails.limit - batchDetails.minted;
+
     return (
         <div>
             <h2>Batch Details</h2>
             <p>Name: {batchDetails.name}</p>
             <p>Cost: {batchDetails.cost} ETH</p>
             <p>Active: {batchDetails.active ? 'Yes' : 'No'}</p>
-            <p>Limit: {batchDetails.limit.toString()}</p>
+            <p>Limit: {remainingMints.toString()}/{batchDetails.limit.toString()}</p>
             <p>Minted: {batchDetails.minted.toString()}</p>
         </div>
     );
