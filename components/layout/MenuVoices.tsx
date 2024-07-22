@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { FaTwitter, FaInstagram, FaDiscord } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaTelegram, FaXTwitter } from "react-icons/fa6";
 
-import { SiThreads } from "react-icons/si";
+import { SiFarcaster, SiThreads } from "react-icons/si";
 import styles from "@/src/styles/menu.module.css";
 
 const MenuVoices = () => {
@@ -15,40 +15,40 @@ const MenuVoices = () => {
         </li>
         */}
         <li>
-          <Link href="/">Home</Link>
+          <Link target="_blank" href="https://www.sakebito.xyz/">Home</Link>
         </li>
         <li>
-          <Link href="/artists">Artists</Link>
+          <Link href="/">Mint</Link>
         </li>
         <li></li>
         <li className={styles.socialIcons}>
           <a
-            href="https://twitter.com/yourusername"
+            href="https://twitter.com/wearesakebito"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaXTwitter />
           </a>
           <a
-            href="https://www.instagram.com/yourusername"
+            href="https://www.instagram.com/sakebito.japan"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaInstagram />
           </a>
           <a
-            href="https://www.threads.net/@yourusername"
+            href="https://t.me/+hDMg4hVPy6VlNDQ0"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <SiThreads />
+            <FaTelegram />
           </a>
           <a
-            href="https://discord.gg/BjGPNPxcbk"
+            href="https://warpcast.com/sakebito"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaDiscord />
+            <SiFarcaster />
           </a>
         </li>
       </ul>
