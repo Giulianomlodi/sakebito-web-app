@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>SAKEbito Web App</title>
+        <title>SAKEbito - Web App</title>
         <meta
           content="A web app for SAKEbito"
           name="description"
