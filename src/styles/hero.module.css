@@ -36,10 +36,5 @@
   .imageColumn,
   .contentColumn {
     width: 100%;
-    height: 50%;
-  }
-
-  .imageColumn {
-    padding-top: 20px;
   }
 }
