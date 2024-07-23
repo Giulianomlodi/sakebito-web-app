@@ -20,7 +20,7 @@ const Toast: React.FC<ToastProps> = ({ children, onClose }) => {
 		<div className="toast" style={{
 			position: 'fixed',
 			bottom: '20px',
-			right: '20px',
+			right: '0',
 			maxWidth: '300px',
 			background: '#333',
 			color: '#fff',

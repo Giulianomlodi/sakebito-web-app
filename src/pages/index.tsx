@@ -4,6 +4,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Header from '../../components/layout/Header';
 import Hero from '@/components/sections/HeroSection';
+import MobileProfile from '@/components/layout/MobileProfile';
 
 const Home: NextPage = () => {
   return (
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
 
         <Header />
         <Hero />
+        <MobileProfile />
       </main>
 
       <footer className={styles.footer}>
