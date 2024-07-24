@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css';
 import Header from '../../components/layout/Header';
 import Hero from '@/components/sections/HeroSection';
 import MobileProfile from '@/components/layout/MobileProfile';
+import Footer from '@/components/layout/Footer';
 
 const Home: NextPage = () => {
   return (
@@ -23,16 +24,7 @@ const Home: NextPage = () => {
         <MobileProfile />
       </main>
 
-      <footer className={styles.footer}>
-        <div className={styles.footerLeft}>
-          All rights reserved - © 2024 - SAKEbito
-        </div>
-        <div className={styles.footerRight}>
-          <a href="https://x.com/otakun_0x" rel="noopener noreferrer" target="_blank">
-            Made with ❤️ by your fren otakun_0x
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

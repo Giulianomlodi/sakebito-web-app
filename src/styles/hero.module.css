@@ -46,17 +46,35 @@
   color: #666;
 }
 
+.imageSake {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .heroSection {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
   .heroContainer {
     flex-direction: column;
   }
 
-  .imageColumn,
   .contentColumn {
     width: 100%;
   }
 
   .contentColumn {
     padding: 0.5em;
+  }
+
+  .imageColumn {
+    display: none;
+  }
+
+  .imageSake {
+    display: block;
+    margin-top: -20px;
   }
 }
