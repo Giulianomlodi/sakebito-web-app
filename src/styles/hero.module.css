@@ -55,4 +55,8 @@
   .contentColumn {
     width: 100%;
   }
+
+  .contentColumn {
+    padding: 0.5em;
+  }
 }

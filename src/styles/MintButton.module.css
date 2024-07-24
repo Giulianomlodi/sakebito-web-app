@@ -80,4 +80,9 @@
   .mintWrapper {
     margin-block: 2em;
   }
+  .batchItem {
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
 }
