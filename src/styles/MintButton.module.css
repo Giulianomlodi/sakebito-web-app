@@ -3,18 +3,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid 1px #120822;
-  border-radius: 12px;
-  padding-inline: 4em;
-  padding-block: 2em;
-  gap: 20px;
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2em;
+  width: 80%;
+  max-width: 400px;
+}
+
+.mintButton {
+  width: 100%;
+  margin-top: 1em;
 }
 
 .mintButton {
@@ -26,6 +28,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  font-weight: 700;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 12px;
@@ -44,6 +47,33 @@
   cursor: pointer;
   border-radius: 12px;
   transition-duration: 0.4s;
+}
+
+.batchDetails {
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.batchDetails h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.batchGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5em;
+}
+
+.batchItem {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+}
+
+.batchItem span:first-child {
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {

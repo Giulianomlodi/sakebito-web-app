@@ -17,6 +17,11 @@ const Hero = () => {
                     />
                 </div>
                 <div className={styles.contentColumn}>
+                    <div className={styles.introSake}>
+                        <h1>SAKEbito</h1>
+                        <p>Secure your exclusive access to Japan's  <strong>hidden sake gems.</strong></p>
+                        <p>Only <strong>100</strong> SAKEbito NFTs available. Mint yours before they're gone!</p>
+                    </div>
                     <MintButton />
                 </div>
             </div>

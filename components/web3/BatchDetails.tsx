@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useReadContract, useWatchContractEvent } from 'wagmi';
 import { formatEther } from 'viem';
 import { abi } from '../../contract-abi';
+import styles from '../../src/styles/MintButton.module.css';
 
 interface BatchDetails {
     name: string;
@@ -53,13 +54,30 @@ const BatchDetails: React.FC<BatchDetailsProps> = ({ contractAddress }) => {
     const remainingMints = batchDetails.limit - batchDetails.minted;
 
     return (
-        <div>
+        <div className={styles.batchDetails}>
             <h2>Batch Details</h2>
-            <p>Name: {batchDetails.name}</p>
-            <p>Cost: {batchDetails.cost} ETH</p>
-            <p>Active: {batchDetails.active ? 'Yes' : 'No'}</p>
-            <p>Limit: {remainingMints.toString()}/{batchDetails.limit.toString()}</p>
-            <p>Minted: {batchDetails.minted.toString()}</p>
+            <div className={styles.batchGrid}>
+                <div className={styles.batchItem}>
+                    <span>Name:</span>
+                    <span>{batchDetails.name}</span>
+                </div>
+                <div className={styles.batchItem}>
+                    <span>Cost:</span>
+                    <span>{batchDetails.cost} ETH</span>
+                </div>
+                <div className={styles.batchItem}>
+                    <span>Active:</span>
+                    <span>{batchDetails.active ? 'Yes' : 'No'}</span>
+                </div>
+                <div className={styles.batchItem}>
+                    <span>Limit:</span>
+                    <span>{remainingMints.toString()}/{batchDetails.limit.toString()}</span>
+                </div>
+                <div className={styles.batchItem}>
+                    <span>Minted:</span>
+                    <span>{batchDetails.minted.toString()}</span>
+                </div>
+            </div>
         </div>
     );
 };

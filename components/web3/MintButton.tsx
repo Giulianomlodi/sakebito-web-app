@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther } from 'viem';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { abi } from '../../contract-abi';
 import Toast from '../layout/Toast';
 import styles from '../../src/styles/MintButton.module.css';
@@ -53,19 +54,25 @@ const MintButton: React.FC = () => {
     };
 
     if (!isMounted) {
-        return null; // or a loading placeholder
+        return null; // Return null during SSR to avoid hydration mismatch
     }
+
+    const buttonText = isPending || isConfirming ? 'Minting...' : 'Mint';
 
     return (
         <div className={styles.mintWrapper}>
             <BatchDetails contractAddress={CONTRACT_ADDRESS} />
-            <button
-                className={styles.mintButton}
-                onClick={handleMint}
-                disabled={!isConnected || isPending || isConfirming}
-            >
-                {isPending || isConfirming ? 'Minting...' : 'Mint'}
-            </button>
+            {isConnected ? (
+                <button
+                    className={styles.mintButton}
+                    onClick={handleMint}
+                    disabled={isPending || isConfirming}
+                >
+                    {buttonText}
+                </button>
+            ) : (
+                <ConnectButton />
+            )}
             {toastMessage && <Toast onClose={closeToast}>{toastMessage}</Toast>}
         </div>
     );
