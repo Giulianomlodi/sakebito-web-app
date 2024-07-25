@@ -20,7 +20,7 @@ const Hero = () => {
                     <Image className={styles.imageSake} src="/sakeIMG.jpg" alt="Sake Logo" width={400} height={400} />
                     <div className={styles.introSake}>
 
-                        <h1>SAKEbito</h1>
+                        <Image src="/SAKEbito_name_black.png" alt="SAKEbito Logo" width={180} height={39} />
                         <p>Secure your exclusive access to Japan's  <strong>hidden sake gems.</strong></p>
                         <p>Only <strong>100</strong> SAKEbito NFTs available for each batch. Price progressively increase. Mint yours before they're gone!</p>
                     </div>
