@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, darkTheme, lightTheme, midnightTheme } from '@rainbow-me/rainbowkit';
 import { theme } from "../../theme";
 import { config } from '../wagmi';
 
@@ -14,10 +14,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={client}>
-        <RainbowKitProvider theme={darkTheme({
+        <RainbowKitProvider theme={midnightTheme({
           accentColor: '#05031A',
           accentColorForeground: 'white',
           borderRadius: 'medium',
+          overlayBlur: 'small',
         })}>
           <ChakraProvider theme={theme}>
             <Component {...pageProps} />
