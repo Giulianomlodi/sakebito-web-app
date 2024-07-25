@@ -3,6 +3,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import styles from "@/src/styles/header.module.css";
 import MenuVoices from "./MenuVoices";
 import Image from "next/image";
+import BurgerMenu from "./BurgerMenu";
 
 function Header() {
   const [account, setAccount] = useState<string | null>(null);
@@ -26,6 +27,7 @@ function Header() {
               height={39}
             />
           </span>
+          <BurgerMenu />
 
         </div>
         <div className={styles.rightArea}>
