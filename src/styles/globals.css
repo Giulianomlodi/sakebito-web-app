@@ -17,6 +17,10 @@ a {
   box-sizing: border-box;
 }
 
+p {
+  color: rgba(5, 3, 26, 0.9) !important;
+}
+
 @media (min-width: 720px) {
   .burger-menu {
     display: none;

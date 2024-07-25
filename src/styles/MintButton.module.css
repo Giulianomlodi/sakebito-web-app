@@ -57,6 +57,8 @@
 .batchDetails h2 {
   text-align: center;
   margin-bottom: 1.8em;
+  font-size: 1.8em;
+  font-weight: 700;
 }
 
 .batchGrid {
