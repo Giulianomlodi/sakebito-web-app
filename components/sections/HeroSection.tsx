@@ -33,7 +33,7 @@ const Hero = () => {
                     <div className={styles.introSake}>
                         <Image src="/SAKEbito_name_black.png" alt="SAKEbito Logo" width={180} height={39} />
                         <p>Secure your exclusive access to Japan's <strong>hidden sake gems.</strong></p>
-                        <p>Only <strong>100</strong> SAKEbito NFTs available for each batch. Price progressively increases. Mint yours before they're gone!</p>
+                        <p>Only <strong>100</strong> SAKEbito NFTs available for each edition. Price progressively increases. Mint yours before they're gone!</p>
                     </div>
                     <div className={styles.mintOptions}>
                         {isWhitelisted ? (
