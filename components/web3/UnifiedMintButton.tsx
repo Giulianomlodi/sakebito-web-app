@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useReadContract } from 'wagmi';
 import { parseEther } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -21,7 +21,7 @@ const MintButton: React.FC = () => {
     const { writeContract, data: hash, isPending, error } = useWriteContract();
 
     const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
-        hash,
+        hash: hash ? hash : undefined,
     });
 
     // Check if the user has already claimed their whitelist mint
@@ -40,7 +40,7 @@ const MintButton: React.FC = () => {
     }, [whitelistClaimed]);
 
     useEffect(() => {
-        if (isMounted && isConfirmed) {
+        if (isMounted && isConfirmed && hash) {
             setToastMessage(`Mint successful! Transaction hash: ${hash}`);
             if (isWhitelisted && !hasClaimedWhitelist) {
                 setHasClaimedWhitelist(true);
@@ -48,7 +48,7 @@ const MintButton: React.FC = () => {
         }
     }, [isMounted, isConfirmed, hash, isWhitelisted, hasClaimedWhitelist]);
 
-    const handleMint = async () => {
+    const mint = useCallback(async (amount: number) => {
         if (!address) {
             setToastMessage('Please connect your wallet to mint.');
             return;
@@ -68,15 +68,15 @@ const MintButton: React.FC = () => {
                     address: CONTRACT_ADDRESS,
                     abi,
                     functionName: 'mint',
-                    args: [BigInt(mintAmount)],
-                    value: parseEther((0.001 * mintAmount).toString()),
+                    args: [BigInt(amount)],
+                    value: parseEther((0.001 * amount).toString()),
                 });
             }
         } catch (err) {
             console.error('Error minting:', err);
             setToastMessage('Error minting. Please try again.');
         }
-    };
+    }, [address, isWhitelisted, hasClaimedWhitelist, merkleProof, writeContract]);
 
     useEffect(() => {
         if (isMounted && error) {
@@ -109,7 +109,7 @@ const MintButton: React.FC = () => {
                     )}
                     <button
                         className={styles.mintButton}
-                        onClick={handleMint}
+                        onClick={() => mint(mintAmount)}
                         disabled={isPending || isConfirming}
                     >
                         {buttonText} {!(isWhitelisted && !hasClaimedWhitelist) && `${mintAmount} SAKEbito`}
