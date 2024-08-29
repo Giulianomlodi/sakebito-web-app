@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import MintButton from '../web3/MintButton';
+
+import MultipleMintButton from '../web3/MultipleMintButton';
 import WhitelistMintButton from '../web3/WhitelistMintButton';
 import WhitelistVerifier from '../web3/WhitelistVerifier';
 import styles from '../../src/styles/hero.module.css';
@@ -32,13 +33,15 @@ const Hero = () => {
                     <div className={styles.introSake}>
                         <Image src="/SAKEbito_name_black.png" alt="SAKEbito Logo" width={180} height={39} />
                         <p>Secure your exclusive access to Japan's <strong>hidden sake gems.</strong></p>
-                        <p>Only <strong>100</strong> SAKEbito NFTs available for each batch. Price progressively increase. Mint yours before they're gone!</p>
+                        <p>Only <strong>100</strong> SAKEbito NFTs available for each batch. Price progressively increases. Mint yours before they're gone!</p>
                     </div>
-                    {isWhitelisted ? (
-                        <WhitelistMintButton merkleProof={merkleProof} />
-                    ) : (
-                        <MintButton />
-                    )}
+                    <div className={styles.mintOptions}>
+                        {isWhitelisted ? (
+                            <WhitelistMintButton merkleProof={merkleProof} />
+                        ) : (
+                            <MultipleMintButton />
+                        )}
+                    </div>
                 </div>
             </div>
         </section>

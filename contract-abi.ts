@@ -57,6 +57,7 @@ export const abi = [
     type: "error",
   },
   { inputs: [], name: "InsufficientPayment", type: "error" },
+  { inputs: [], name: "InvalidMintAmount", type: "error" },
   { inputs: [], name: "InvalidProof", type: "error" },
   { inputs: [], name: "MintNotActive", type: "error" },
   { inputs: [], name: "NoBatchActive", type: "error" },
@@ -265,6 +266,13 @@ export const abi = [
   },
   {
     inputs: [],
+    name: "MAX_MINT_PER_TX",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "activateBatch",
     outputs: [],
     stateMutability: "nonpayable",
@@ -375,7 +383,7 @@ export const abi = [
     type: "function",
   },
   {
-    inputs: [],
+    inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
     name: "mint",
     outputs: [],
     stateMutability: "payable",

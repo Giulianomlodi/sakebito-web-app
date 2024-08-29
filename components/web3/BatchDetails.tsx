@@ -55,7 +55,7 @@ const BatchDetails: React.FC<BatchDetailsProps> = ({ contractAddress }) => {
 
     return (
         <div className={styles.batchDetails}>
-            <h2>Batch Details</h2>
+            <h2>Edition Details</h2>
             <div className={styles.batchGrid}>
                 <div className={styles.batchItem}>
                     <span>Name:</span>

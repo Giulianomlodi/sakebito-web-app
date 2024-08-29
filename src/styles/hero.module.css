@@ -28,6 +28,7 @@
   align-items: center;
   width: 50%;
   padding: 0;
+  margin-block-start: 5em;
 }
 
 .introSake {

@@ -7,7 +7,7 @@ import Toast from '../layout/Toast';
 import styles from '../../src/styles/MintButton.module.css';
 import BatchDetails from './BatchDetails';
 
-const CONTRACT_ADDRESS = '0x084aaf400ac39b0d36daf82852005625d7d8b009';
+const CONTRACT_ADDRESS = '0xd08083c312cc177ea18a854c38f5bbf666638610';
 
 interface WhitelistMintButtonProps {
     merkleProof: `0x${string}`[];
