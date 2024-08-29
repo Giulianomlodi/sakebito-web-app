@@ -57,6 +57,9 @@
 }
 
 @media (max-width: 768px) {
+  .contentColumn {
+    margin-block-start: 0em;
+  }
   .heroSection {
     flex-direction: column;
     height: auto;
