@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useAccount } from 'wagmi';
 import { MerkleTree } from 'merkletreejs';
 import keccak256 from 'keccak256';
@@ -24,7 +24,7 @@ interface WhitelistVerifierProps {
 const WhitelistVerifier: React.FC<WhitelistVerifierProps> = ({ onProofGenerated }) => {
     const { address } = useAccount();
 
-    useEffect(() => {
+    const verifyWhitelist = useCallback(() => {
         // Create Merkle Tree and calculate root hash
         const leafNodes = whitelistAddresses.map((addr) => keccak256(addr.toLowerCase()));
         const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
@@ -43,6 +43,10 @@ const WhitelistVerifier: React.FC<WhitelistVerifierProps> = ({ onProofGenerated 
             onProofGenerated(hexProof as `0x${string}`[], verified);
         }
     }, [address, onProofGenerated]);
+
+    useEffect(() => {
+        verifyWhitelist();
+    }, [verifyWhitelist]);
 
     return null; // This component doesn't render anything visually
 };
