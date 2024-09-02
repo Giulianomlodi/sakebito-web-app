@@ -8,7 +8,7 @@ import styles from '../../src/styles/MintButton.module.css';
 import BatchDetails from './BatchDetails';
 import { useWhitelistStatus } from './useWhitelistStatus';
 
-const CONTRACT_ADDRESS = '0xd08083c312cc177ea18a854c38f5bbf666638610';
+const CONTRACT_ADDRESS = '0x5ad39d7a300ac8dd1eca63f0f1837035f335ac00';
 
 const MintButton: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false);

@@ -7,7 +7,7 @@ import Toast from '../layout/Toast';
 import styles from '../../src/styles/MintButton.module.css';
 import BatchDetails from './BatchDetails';
 
-const CONTRACT_ADDRESS = '0x084aaf400ac39b0d36daf82852005625d7d8b009';
+const CONTRACT_ADDRESS = '0x5ad39d7a300ac8dd1eca63f0f1837035f335ac00';
 
 const MintButton: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false);
