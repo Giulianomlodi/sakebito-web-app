@@ -60,6 +60,7 @@ export const abi = [
   { inputs: [], name: "InvalidMintAmount", type: "error" },
   { inputs: [], name: "InvalidProof", type: "error" },
   { inputs: [], name: "MintNotActive", type: "error" },
+  { inputs: [], name: "NoActiveBatch", type: "error" },
   { inputs: [], name: "NoBatchActive", type: "error" },
   {
     inputs: [{ internalType: "address", name: "owner", type: "address" }],
@@ -387,6 +388,13 @@ export const abi = [
     name: "mint",
     outputs: [],
     stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "to", type: "address" }],
+    name: "mintTo",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
