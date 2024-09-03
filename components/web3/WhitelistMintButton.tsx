@@ -7,7 +7,7 @@ import Toast from '../layout/Toast';
 import styles from '../../src/styles/MintButton.module.css';
 import BatchDetails from './BatchDetails';
 
-const CONTRACT_ADDRESS = '0x5ad39d7a300ac8dd1eca63f0f1837035f335ac00';
+const CONTRACT_ADDRESS = '0x8c3343fbe076d8d33059265710a56f894207bb14';
 
 interface WhitelistMintButtonProps {
     merkleProof: `0x${string}`[];
@@ -40,7 +40,7 @@ const WhitelistMintButton: React.FC<WhitelistMintButtonProps> = ({ merkleProof }
                 abi,
                 functionName: 'whitelistMint',
                 args: [merkleProof],
-                value: parseEther('0.0009'), // 10% discount from 0.001 ETH
+                value: parseEther('0.00085'), // 15% discount from 0.001 ETH
             });
         } catch (err) {
             console.error('Error minting:', err);
