@@ -1,4 +1,3 @@
-// components/web3/MintButton.tsx
 import React, { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther } from 'viem';
@@ -8,18 +7,15 @@ import Toast from '../layout/Toast';
 import styles from '../../src/styles/MintButton.module.css';
 import BatchDetails from './BatchDetails';
 
-interface MintButtonProps {
-    contractAddress: `0x${string}`;
-}
+const CONTRACT_ADDRESS = '0x8c3343fbe076d8d33059265710a56f894207bb14';
 
-const MintButton: React.FC<MintButtonProps> = ({ contractAddress }) => {
+const MintButton: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false);
     const [toastMessage, setToastMessage] = useState<string | null>(null);
-    const [mintAmount, setMintAmount] = useState(1);
     const { isConnected } = useAccount();
     const { writeContract, data: hash, isPending, error } = useWriteContract();
 
-    const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+    const { isLoading: isConfirming, data: receipt } = useWaitForTransactionReceipt({
         hash,
     });
 
@@ -28,19 +24,19 @@ const MintButton: React.FC<MintButtonProps> = ({ contractAddress }) => {
     }, []);
 
     useEffect(() => {
-        if (isMounted && isConfirmed) {
-            setToastMessage(`Mint successful! Transaction hash: ${hash}`);
+        if (isMounted && receipt) {
+            setToastMessage(`Mint successful! Transaction hash: ${receipt.transactionHash}`);
         }
-    }, [isMounted, isConfirmed, hash]);
+    }, [isMounted, receipt]);
 
     const handleMint = async () => {
         try {
             writeContract({
-                address: contractAddress,
+                address: CONTRACT_ADDRESS,
                 abi,
                 functionName: 'mint',
-                args: [BigInt(mintAmount)],
-                value: parseEther((0.001 * mintAmount).toString()),
+                args: [BigInt(1)],
+                value: parseEther('0.001'), // Adjust the value based on your contract's mint price
             });
         } catch (err) {
             console.error('Error minting:', err);
@@ -59,29 +55,22 @@ const MintButton: React.FC<MintButtonProps> = ({ contractAddress }) => {
     };
 
     if (!isMounted) {
-        return null;
+        return null; // Return null during SSR to avoid hydration mismatch
     }
 
     const buttonText = isPending || isConfirming ? 'Minting...' : 'Mint';
 
     return (
         <div className={styles.mintWrapper}>
-            <BatchDetails contractAddress={contractAddress} />
+            <BatchDetails contractAddress={CONTRACT_ADDRESS} />
             {isConnected ? (
-                <>
-                    <div className={styles.mintAmountSelector}>
-                        <button onClick={() => setMintAmount(Math.max(1, mintAmount - 1))}>-</button>
-                        <span>{mintAmount}</span>
-                        <button onClick={() => setMintAmount(Math.min(3, mintAmount + 1))}>+</button>
-                    </div>
-                    <button
-                        className={styles.mintButton}
-                        onClick={handleMint}
-                        disabled={isPending || isConfirming}
-                    >
-                        {buttonText} {mintAmount} SAKEbito
-                    </button>
-                </>
+                <button
+                    className={styles.mintButton}
+                    onClick={handleMint}
+                    disabled={isPending || isConfirming}
+                >
+                    {buttonText}
+                </button>
             ) : (
                 <ConnectButton />
             )}

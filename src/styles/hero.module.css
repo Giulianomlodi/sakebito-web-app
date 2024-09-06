@@ -94,3 +94,39 @@
     border-bottom-right-radius: 40px;
   }
 }
+
+/* src/styles/hero.module.css */
+
+.mintOptions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mintToggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.mintToggle button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.mintToggle button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.mintToggle button:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.activeToggle {
+  background-color: #007bff !important;
+  color: white;
+}

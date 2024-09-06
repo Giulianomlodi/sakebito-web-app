@@ -1,0 +1,20 @@
+.moonPayButton {
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.moonPayButton:hover {
+  background-color: #2980b9;
+}
+
+.moonPayButton:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
