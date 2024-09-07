@@ -15,17 +15,24 @@ const whitelistAddresses = [
 export const useWhitelistStatus = (address: string | undefined) => {
     const [isWhitelisted, setIsWhitelisted] = useState(false);
     const [merkleProof, setMerkleProof] = useState<`0x${string}`[]>([]);
+    const [merkleRoot, setMerkleRoot] = useState<string>('');
 
     useEffect(() => {
+        const leafNodes = whitelistAddresses.map(addr => keccak256(addr.toLowerCase()));
+        const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+        const rootHash = merkleTree.getHexRoot();
+
+        // Set the Merkle root
+        setMerkleRoot(rootHash);
+
+        // Log the Merkle root to the console
+        console.log('Merkle Root:', rootHash);
+
         if (!address) {
             setIsWhitelisted(false);
             setMerkleProof([]);
             return;
         }
-
-        const leafNodes = whitelistAddresses.map(addr => keccak256(addr.toLowerCase()));
-        const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
-        const rootHash = merkleTree.getHexRoot();
 
         const claimingAddress = keccak256(address.toLowerCase());
         const hexProof = merkleTree.getHexProof(claimingAddress);
@@ -35,7 +42,7 @@ export const useWhitelistStatus = (address: string | undefined) => {
         setMerkleProof(hexProof as `0x${string}`[]);
     }, [address]);
 
-    return { isWhitelisted, merkleProof };
+    return { isWhitelisted, merkleProof, merkleRoot };
 };
 
 export default useWhitelistStatus;

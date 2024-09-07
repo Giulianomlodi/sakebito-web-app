@@ -48,12 +48,21 @@
 }
 
 .introSake p {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #666;
 }
 
 .imageSake {
   display: none;
+}
+
+.infoBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 2em;
 }
 
 @media (max-width: 768px) {

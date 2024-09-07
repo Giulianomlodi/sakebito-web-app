@@ -20,8 +20,10 @@ const Hero = () => {
                     <Image className={styles.imageSake} src="/sakeIMG.jpg" alt="Sake Logo" width={400} height={400} />
                     <div className={styles.introSake}>
                         <Image src="/SAKEbito_name_black.png" alt="SAKEbito Logo" width={180} height={39} />
-                        <p>Secure your exclusive access to Japan's <strong>hidden sake gems.</strong></p>
-                        <p>Only <strong>100</strong> SAKEbito NFTs available for each edition. Price progressively increases. Mint yours before they're gone!</p>
+                        <p>This is the Edition 1 Membership “ 一級 “, with only <strong>100 seats</strong> available.
+
+                        </p>
+                        <p> <strong>Join us</strong> now for an awesome <strong>Sake vibe</strong> and let's dive deeper into the world of <strong>premium</strong> Sake together!</p>
                     </div>
                     <div className={styles.mintOptions}>
                         <MintButton />
