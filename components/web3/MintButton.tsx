@@ -36,7 +36,7 @@ const MintButton: React.FC = () => {
                 abi,
                 functionName: 'mint',
                 args: [BigInt(1)],
-                value: parseEther('0.001'), // Adjust the value based on your contract's mint price
+                value: parseEther('0.14'), // Adjust the value based on your contract's mint price
             });
         } catch (err) {
             console.error('Error minting:', err);
