@@ -115,7 +115,7 @@ const MintButton: React.FC = () => {
                         {buttonText} {!(isWhitelisted && !hasClaimedWhitelist) && `${mintAmount} SAKEbito`}
                     </button>
                     {isWhitelisted && !hasClaimedWhitelist && (
-                        <p className={styles.whitelistStatus}>You are whitelisted! Enjoy a 10% discount on your mint.</p>
+                        <p className={styles.whitelistStatus}>You are whitelisted! Enjoy a 15% discount on your mint.</p>
                     )}
                 </>
             ) : (
