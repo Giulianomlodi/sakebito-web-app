@@ -5,18 +5,17 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { abi } from '../../contract-abi';
 import Toast from '../layout/Toast';
 import styles from '../../src/styles/MintButton.module.css';
-import BatchDetails from './BatchDetails';
+import BatchDetails from '../web3/BatchDetails';
 
 const CONTRACT_ADDRESS = '0x60190a2ad63e19e301a579b18d6ec7c13979a037';
 
-const MultipleMintButton: React.FC = () => {
+const MintButton: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false);
     const [toastMessage, setToastMessage] = useState<string | null>(null);
-    const [mintAmount, setMintAmount] = useState(1);
     const { isConnected } = useAccount();
     const { writeContract, data: hash, isPending, error } = useWriteContract();
 
-    const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+    const { isLoading: isConfirming, data: receipt } = useWaitForTransactionReceipt({
         hash,
     });
 
@@ -25,10 +24,10 @@ const MultipleMintButton: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        if (isMounted && isConfirmed) {
-            setToastMessage(`Mint successful! Transaction hash: ${hash}`);
+        if (isMounted && receipt) {
+            setToastMessage(`Mint successful! Transaction hash: ${receipt.transactionHash}`);
         }
-    }, [isMounted, isConfirmed, hash]);
+    }, [isMounted, receipt]);
 
     const handleMint = async () => {
         try {
@@ -36,8 +35,8 @@ const MultipleMintButton: React.FC = () => {
                 address: CONTRACT_ADDRESS,
                 abi,
                 functionName: 'mint',
-                args: [BigInt(mintAmount)],
-                value: parseEther((0.001 * mintAmount).toString()),
+                args: [BigInt(1)],
+                value: parseEther('0.14'), // Adjust the value based on your contract's mint price
             });
         } catch (err) {
             console.error('Error minting:', err);
@@ -56,7 +55,7 @@ const MultipleMintButton: React.FC = () => {
     };
 
     if (!isMounted) {
-        return null;
+        return null; // Return null during SSR to avoid hydration mismatch
     }
 
     const buttonText = isPending || isConfirming ? 'Minting...' : 'Mint';
@@ -65,20 +64,13 @@ const MultipleMintButton: React.FC = () => {
         <div className={styles.mintWrapper}>
             <BatchDetails contractAddress={CONTRACT_ADDRESS} />
             {isConnected ? (
-                <>
-                    <div className={styles.mintAmountSelector}>
-                        <button onClick={() => setMintAmount(Math.max(1, mintAmount - 1))}>-</button>
-                        <span>{mintAmount}</span>
-                        <button onClick={() => setMintAmount(Math.min(3, mintAmount + 1))}>+</button>
-                    </div>
-                    <button
-                        className={styles.mintButton}
-                        onClick={handleMint}
-                        disabled={isPending || isConfirming}
-                    >
-                        {buttonText} {mintAmount} SAKEbito
-                    </button>
-                </>
+                <button
+                    className={styles.mintButton}
+                    onClick={handleMint}
+                    disabled={isPending || isConfirming}
+                >
+                    {buttonText}
+                </button>
             ) : (
                 <ConnectButton />
             )}
@@ -87,4 +79,4 @@ const MultipleMintButton: React.FC = () => {
     );
 };
 
-export default MultipleMintButton;
+export default MintButton;

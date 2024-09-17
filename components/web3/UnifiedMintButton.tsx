@@ -69,7 +69,7 @@ const MintButton: React.FC = () => {
                     abi,
                     functionName: 'mint',
                     args: [BigInt(amount)],
-                    value: parseEther((0.14 * amount).toString()),
+                    value: parseEther((0.14 * 0.85).toString()), // 15% discount
                 });
             }
         } catch (err) {

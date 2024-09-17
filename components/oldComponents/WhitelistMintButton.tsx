@@ -5,7 +5,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { abi } from '../../contract-abi';
 import Toast from '../layout/Toast';
 import styles from '../../src/styles/MintButton.module.css';
-import BatchDetails from './BatchDetails';
+import BatchDetails from '../web3/BatchDetails';
 
 const CONTRACT_ADDRESS = '0x8c3343fbe076d8d33059265710a56f894207bb14';
 
