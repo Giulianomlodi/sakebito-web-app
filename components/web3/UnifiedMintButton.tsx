@@ -8,7 +8,7 @@ import styles from '../../src/styles/MintButton.module.css';
 import BatchDetails from './BatchDetails';
 import { useWhitelistStatus } from './useWhitelistStatus';
 
-const CONTRACT_ADDRESS = '0x60190a2ad63e19e301a579b18d6ec7c13979a037';
+const CONTRACT_ADDRESS = '0x29c3b7c2c11ad35d606a7392fe31f6b08bb4afde';
 
 const MintButton: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -69,7 +69,7 @@ const MintButton: React.FC = () => {
                     abi,
                     functionName: 'mint',
                     args: [BigInt(amount)],
-                    value: parseEther((0.14 * amount).toString()), // No discount for regular mint
+                    value: parseEther((0.14 * amount).toString()),
                 });
             }
         } catch (err) {

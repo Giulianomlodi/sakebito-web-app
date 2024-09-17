@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { MerkleTree } from 'merkletreejs';
-import keccak256 from 'keccak256';
+import { keccak256, encodePacked } from 'viem';
 
 const whitelistAddresses = [
     "0x93104cb692BdFC3634d5c9F7405278e4d490Cf70",
@@ -26,14 +26,13 @@ export const useWhitelistStatus = (address: string | undefined) => {
     const [merkleRoot, setMerkleRoot] = useState<string>('');
 
     useEffect(() => {
-        const leafNodes = whitelistAddresses.map(addr => keccak256(addr.toLowerCase()));
+        const leafNodes = whitelistAddresses.map(addr =>
+            keccak256(encodePacked(['address'], [addr.toLowerCase() as `0x${string}`]))
+        );
         const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
         const rootHash = merkleTree.getHexRoot();
 
-        // Set the Merkle root
         setMerkleRoot(rootHash);
-
-        // Log the Merkle root to the console
         console.log('Merkle Root:', rootHash);
 
         if (!address) {
@@ -42,12 +41,16 @@ export const useWhitelistStatus = (address: string | undefined) => {
             return;
         }
 
-        const claimingAddress = keccak256(address.toLowerCase());
+        const claimingAddress = keccak256(encodePacked(['address'], [address.toLowerCase() as `0x${string}`]));
         const hexProof = merkleTree.getHexProof(claimingAddress);
         const verified = merkleTree.verify(hexProof, claimingAddress, rootHash);
 
         setIsWhitelisted(verified);
         setMerkleProof(hexProof as `0x${string}`[]);
+
+        console.log('Address:', address);
+        console.log('Is Whitelisted:', verified);
+        console.log('Merkle Proof:', hexProof);
     }, [address]);
 
     return { isWhitelisted, merkleProof, merkleRoot };
