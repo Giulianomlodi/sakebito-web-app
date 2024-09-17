@@ -18,6 +18,7 @@ const whitelistAddresses = [
     "0x2E70F8a381efd5142474E8ce61fa3d05D3CE0576",
     "0x2a3Ea12cE3C95b44206C60aCb90043711dFF9A7e",
     "0xCBA69d3fd92dc945284d007acD5F96bE6B8dc4aB",
+    "0xAF82a5AFc84fC9B38F6424DD4AEf393a41a35AA0",
 ];
 // Replace this with the actual admin address
 const ADMIN_ADDRESS = "0x3cC42f45FE6a9a627A94D74aDe366D4f77783987";

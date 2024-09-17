@@ -16,6 +16,7 @@ const whitelistAddresses = [
     "0x2E70F8a381efd5142474E8ce61fa3d05D3CE0576",
     "0x2a3Ea12cE3C95b44206C60aCb90043711dFF9A7e",
     "0xCBA69d3fd92dc945284d007acD5F96bE6B8dc4aB",
+    "0xAF82a5AFc84fC9B38F6424DD4AEf393a41a35AA0",
 ];
 
 export const useWhitelistStatus = (address: string | undefined) => {
