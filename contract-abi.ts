@@ -1,6 +1,9 @@
 export const abi = [
   {
-    inputs: [{ internalType: "address", name: "_devAddress", type: "address" }],
+    inputs: [
+      { internalType: "address", name: "_devAddress", type: "address" },
+      { internalType: "address", name: "_adminAddress", type: "address" },
+    ],
     stateMutability: "nonpayable",
     type: "constructor",
   },
@@ -74,6 +77,7 @@ export const abi = [
   },
   { inputs: [], name: "PreviousBatchNotEnded", type: "error" },
   { inputs: [], name: "ReentrancyGuardReentrantCall", type: "error" },
+  { inputs: [], name: "TransferFailed", type: "error" },
   { inputs: [], name: "WhitelistAlreadyClaimed", type: "error" },
   {
     anonymous: false,
@@ -253,6 +257,37 @@ export const abi = [
   {
     anonymous: false,
     inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "devAddress",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "adminAddress",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "devAmount",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "adminAmount",
+        type: "uint256",
+      },
+    ],
+    name: "PaymentDistributed",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
       { indexed: true, internalType: "address", name: "from", type: "address" },
       { indexed: true, internalType: "address", name: "to", type: "address" },
       {
@@ -264,6 +299,20 @@ export const abi = [
     ],
     name: "Transfer",
     type: "event",
+  },
+  {
+    inputs: [],
+    name: "ADMIN_SHARE_PERCENTAGE",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "DEV_SHARE_PERCENTAGE",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
@@ -283,6 +332,13 @@ export const abi = [
     inputs: [],
     name: "activeMint",
     outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "adminAddress",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
