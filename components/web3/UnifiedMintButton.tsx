@@ -8,7 +8,7 @@ import styles from '../../src/styles/MintButton.module.css';
 import BatchDetails from './BatchDetails';
 import { useWhitelistStatus } from './useWhitelistStatus';
 
-const CONTRACT_ADDRESS = '0x4876e503d7246d3792d36619c659fa190ea46d9f';
+const CONTRACT_ADDRESS = '0xb564119acba1328b58dbad5bf763f07f967cca45';
 
 const MintButton: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -61,7 +61,7 @@ const MintButton: React.FC = () => {
                     abi,
                     functionName: 'whitelistMint',
                     args: [merkleProof],
-                    value: parseEther((0.14 * 0.15).toString()), // 10% discount
+                    value: parseEther((0.001 * 0.85).toString()), // 15% discount
                 });
             } else {
                 writeContract({
@@ -69,7 +69,7 @@ const MintButton: React.FC = () => {
                     abi,
                     functionName: 'mint',
                     args: [BigInt(amount)],
-                    value: parseEther((0.14 * amount).toString()),
+                    value: parseEther((0.001 * amount).toString()),
                 });
             }
         } catch (err) {
@@ -115,7 +115,7 @@ const MintButton: React.FC = () => {
                         {buttonText} {!(isWhitelisted && !hasClaimedWhitelist) && `${mintAmount} SAKEbito`}
                     </button>
                     {isWhitelisted && !hasClaimedWhitelist && (
-                        <p className={styles.whitelistStatus}>You are whitelisted! Enjoy a 10% discount on your mint.</p>
+                        <p className={styles.whitelistStatus}>You are whitelisted! Enjoy a 15% discount on your mint.</p>
                     )}
                 </>
             ) : (
