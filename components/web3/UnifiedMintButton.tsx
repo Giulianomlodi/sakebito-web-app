@@ -61,7 +61,7 @@ const MintButton: React.FC = () => {
                     abi,
                     functionName: 'whitelistMint',
                     args: [merkleProof],
-                    value: parseEther((0.14 * 0.85).toString()), // 15% discount
+                    value: parseEther((0.14 * 0.87).toString()), // 15% discount
                 });
             } else {
                 writeContract({
